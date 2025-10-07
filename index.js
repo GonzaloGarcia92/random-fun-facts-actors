@@ -7,7 +7,7 @@ app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
 
-app.get('/person/random', async (req, res) => {
+app.get('/actor/facts', async (req, res) => {
     try {
         const url = 'https://api.themoviedb.org/3/person/popular?api_key=62e9afa9b26ec1658e4f7c572663a19b';
         const response = await fetch(url);
@@ -29,7 +29,15 @@ app.get('/person/random', async (req, res) => {
         }
         const randomMovie = movies[Math.floor(Math.random() * movies.length)];
         console.log('Película aleatoria:', randomMovie);
-        idMovie = randomMovie.id;
+        const idMovie = randomMovie.id;
+
+        // Cuando tengas la URL del servicio de comentarios, descomenta y completa:
+        /*
+        const commentsUrl = `URL_DEL_SERVICIO/${idMovie}`;
+        const commentsResponse = await fetch(commentsUrl);
+        const commentsData = await commentsResponse.json();
+        // Puedes usar commentsData como necesites
+        */
 
         msg = randomPerson.name + " es conocid@ por " + randomMovie.title;
         res.json({ texto: msg });
